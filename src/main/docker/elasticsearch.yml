@@ -1,0 +1,10 @@
+version: '2'
+services:
+    project8-elasticsearch:
+        container_name: project8-elasticsearch
+        image: elasticsearch:2.4.0
+        # volumes:
+        #     - ~/volumes/jhipster/project8/elasticsearch/:/usr/share/elasticsearch/data/
+        ports:
+            - 9200:9200
+            - 9300:9300

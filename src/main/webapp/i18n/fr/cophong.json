@@ -1,0 +1,25 @@
+{
+    "project8App": {
+        "cophong" : {
+            "home": {
+                "title": "Cophongs",
+                "createLabel": "Créer un nouveau Cophong",
+                "createOrEditLabel": "Créer ou éditer un Cophong",
+                "search": "Recherche pour Cophong"
+            },
+            "created": "Un nouveau Cophong a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Cophong avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Cophong avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Cophong {{ id }} ?"
+            },
+            "detail": {
+                "title": "Cophong"
+            },
+            "name": "Name",
+            "age": "Age",
+            "phone": "Phone",
+            "address": "Address"
+        }
+    }
+}

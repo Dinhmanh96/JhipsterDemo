@@ -1,0 +1,25 @@
+{
+    "project8App": {
+        "cophong" : {
+            "home": {
+                "title": "Cophongs",
+                "createLabel": "Create a new Cophong",
+                "createOrEditLabel": "Create or edit a Cophong",
+                "search": "Search for Cophong"
+            },
+            "created": "A new Cophong is created with identifier {{ param }}",
+            "updated": "A Cophong is updated with identifier {{ param }}",
+            "deleted": "A Cophong is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Cophong {{ id }}?"
+            },
+            "detail": {
+                "title": "Cophong"
+            },
+            "name": "Name",
+            "age": "Age",
+            "phone": "Phone",
+            "address": "Address"
+        }
+    }
+}
