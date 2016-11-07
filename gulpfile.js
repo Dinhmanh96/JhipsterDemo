@@ -2,6 +2,13 @@
 'use strict';
 
 var gulp = require('gulp'),
+<<<<<<< HEAD
+=======
+    expect = require('gulp-expect-file'),
+    es = require('event-stream'),
+    flatten = require('gulp-flatten'),
+    sass = require('gulp-sass'),
+>>>>>>> c30c663b5395f2ebbd3ab7383382d58e87c8bdba
     rev = require('gulp-rev'),
     templateCache = require('gulp-angular-templatecache'),
     htmlmin = require('gulp-htmlmin'),
@@ -30,11 +37,15 @@ gulp.task('clean', function () {
     return del([config.dist], { dot: true });
 });
 
+<<<<<<< HEAD
 gulp.task('copy', ['copy:i18n', 'copy:fonts', 'copy:common']);
 
 gulp.task('copy:i18n', copy.i18n);
 
 gulp.task('copy:languages', copy.languages);
+=======
+gulp.task('copy', ['copy:fonts', 'copy:common']);
+>>>>>>> c30c663b5395f2ebbd3ab7383382d58e87c8bdba
 
 gulp.task('copy:fonts', copy.fonts);
 
@@ -59,8 +70,28 @@ gulp.task('images', function () {
         .pipe(browserSync.reload({stream: true}));
 });
 
+<<<<<<< HEAD
 
 gulp.task('styles', [], function () {
+=======
+gulp.task('sass', function () {
+    return es.merge(
+        gulp.src(config.sassSrc)
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(expect(config.sassSrc))
+        .pipe(changed(config.cssDir, {extension: '.css'}))
+        .pipe(sass({includePaths:config.bower}).on('error', sass.logError))
+        .pipe(gulp.dest(config.cssDir)),
+        gulp.src(config.bower + '**/fonts/**/*.{woff,woff2,svg,ttf,eot,otf}')
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(changed(config.app + 'content/fonts'))
+        .pipe(flatten())
+        .pipe(gulp.dest(config.app + 'content/fonts'))
+    );
+});
+
+gulp.task('styles', ['sass'], function () {
+>>>>>>> c30c663b5395f2ebbd3ab7383382d58e87c8bdba
     return gulp.src(config.app + 'content/css')
         .pipe(browserSync.reload({stream: true}));
 });
@@ -85,7 +116,11 @@ gulp.task('html', function () {
     return gulp.src(config.app + 'app/**/*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(templateCache({
+<<<<<<< HEAD
             module: 'project8App',
+=======
+            module: 'project7App',
+>>>>>>> c30c663b5395f2ebbd3ab7383382d58e87c8bdba
             root: 'app/',
             moduleSystem: 'IIFE'
         }))
@@ -94,7 +129,11 @@ gulp.task('html', function () {
 
 gulp.task('ngconstant:dev', function () {
     return ngConstant({
+<<<<<<< HEAD
         name: 'project8App',
+=======
+        name: 'project7App',
+>>>>>>> c30c663b5395f2ebbd3ab7383382d58e87c8bdba
         constants: {
             VERSION: util.parseVersion(),
             DEBUG_INFO_ENABLED: true
@@ -108,7 +147,11 @@ gulp.task('ngconstant:dev', function () {
 
 gulp.task('ngconstant:prod', function () {
     return ngConstant({
+<<<<<<< HEAD
         name: 'project8App',
+=======
+        name: 'project7App',
+>>>>>>> c30c663b5395f2ebbd3ab7383382d58e87c8bdba
         constants: {
             VERSION: util.parseVersion(),
             DEBUG_INFO_ENABLED: false
@@ -151,20 +194,32 @@ gulp.task('test', ['inject:test', 'ngconstant:dev'], function (done) {
 gulp.task('watch', function () {
     gulp.watch('bower.json', ['install']);
     gulp.watch(['gulpfile.js', 'pom.xml'], ['ngconstant:dev']);
+<<<<<<< HEAD
     gulp.watch(config.app + 'content/css/**/*.css', ['styles']);
+=======
+    gulp.watch(config.sassSrc, ['styles']);
+>>>>>>> c30c663b5395f2ebbd3ab7383382d58e87c8bdba
     gulp.watch(config.app + 'content/images/**', ['images']);
     gulp.watch(config.app + 'app/**/*.js', ['inject:app']);
     gulp.watch([config.app + '*.html', config.app + 'app/**', config.app + 'i18n/**']).on('change', browserSync.reload);
 });
 
 gulp.task('install', function () {
+<<<<<<< HEAD
     runSequence(['inject:dep', 'ngconstant:dev'], 'copy:languages', 'inject:app', 'inject:troubleshoot');
+=======
+    runSequence(['inject:dep', 'ngconstant:dev'], 'sass', 'inject:app', 'inject:troubleshoot');
+>>>>>>> c30c663b5395f2ebbd3ab7383382d58e87c8bdba
 });
 
 gulp.task('serve', ['install'], serve);
 
 gulp.task('build', ['clean'], function (cb) {
+<<<<<<< HEAD
     runSequence(['copy', 'inject:vendor', 'ngconstant:prod', 'copy:languages'], 'inject:app', 'inject:troubleshoot', 'assets:prod', cb);
+=======
+    runSequence(['copy', 'inject:vendor', 'ngconstant:prod'], 'inject:app', 'inject:troubleshoot', 'assets:prod', cb);
+>>>>>>> c30c663b5395f2ebbd3ab7383382d58e87c8bdba
 });
 
 gulp.task('default', ['serve']);
